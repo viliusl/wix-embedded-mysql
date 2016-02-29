@@ -2,7 +2,8 @@ package com.wix.mysql.io;
 
 import de.flapdoodle.embed.process.io.IStreamProcessor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author viliusl
@@ -37,19 +38,19 @@ public class NotifyingStreamProcessor implements IStreamProcessor {
 
     public static class ResultMatchingListener {
 
-        private final Set<String> successPatterns = new HashSet<>();
+        private final String successPattern;
         private final String failurePattern = "[ERROR]";
         private final StringBuilder output = new StringBuilder();
         private boolean initWithSuccess = false;
         private String failureFound = null;
 
-        public ResultMatchingListener(String... successPatterns) {
-            this.successPatterns.addAll(Arrays.asList(successPatterns));
+        public ResultMatchingListener(String successPattern) {
+            this.successPattern = successPattern;
         }
 
         public void onMessage(final String message) {
             output.append(message);
-            if (containsOneOfPatterns()) {
+            if (containsPattern()) {
                 gotResult(true, null);
             } else {
                 int failureIndex = output.indexOf(failurePattern);
@@ -59,13 +60,8 @@ public class NotifyingStreamProcessor implements IStreamProcessor {
             }
         }
 
-        private boolean containsOneOfPatterns() {
-            for (String pattern : this.successPatterns) {
-                if (output.indexOf(pattern) != -1) {
-                    return true;
-                }
-            }
-            return false;
+        private boolean containsPattern() {
+            return output.indexOf(this.successPattern) != -1;
         }
 
         private synchronized void gotResult(boolean success, String message) {
