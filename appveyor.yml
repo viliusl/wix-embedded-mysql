@@ -28,7 +28,7 @@ install:
   - cmd: SET PATH=C:\maven\apache-maven-3.3.3\bin;%JAVA_HOME%\bin;%PATH%
 
 test_script:
-  - mvn -qB clean verify
+  - mvn -q -B clean verify
 
 cache:
   - C:\maven\apache-maven-3.3.3
