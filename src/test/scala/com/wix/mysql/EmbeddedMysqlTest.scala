@@ -27,21 +27,21 @@ class EmbeddedMysqlTest extends IntegrationTest {
         haveServerTimezoneMatching("UTC")
     }
 
-//    "use custom values provided via MysqldConfig" in {
-//      val config = aMysqldConfig(v5_6_latest)
-//        .withCharset(LATIN1)
-//        .withUser("zeUser", "zePassword")
-//        .withPort(1112)
-//        .withTimeZone("US/Michigan")
-//        .build
-//
-//      mysqld = anEmbeddedMysql(config).start
-//
-//      mysqld must
-//        haveCharsetOf(LATIN1) and
-//        beAvailableOn(1112, "zeUser", "zePassword", SystemDefaults.SCHEMA) and
-//        haveServerTimezoneMatching("US/Michigan")
-//    }
+    "use custom values provided via MysqldConfig" in {
+      val config = aMysqldConfig(v5_6_latest)
+        .withCharset(LATIN1)
+        .withUser("zeUser", "zePassword")
+        .withPort(1112)
+        .withTimeZone("US/Michigan")
+        .build
+
+      mysqld = anEmbeddedMysql(config).start
+
+      mysqld must
+        haveCharsetOf(LATIN1) and
+        beAvailableOn(1112, "zeUser", "zePassword", SystemDefaults.SCHEMA) and
+        haveServerTimezoneMatching("US/Michigan")
+    }
   }
 
 //  "EmbeddedMysql schema reload" should {
