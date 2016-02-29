@@ -119,7 +119,7 @@ public class MysqldProcess extends AbstractProcess<MysqldConfig, MysqldExecutabl
     }
 
     private boolean stopUsingMysqldadmin() {
-        ResultMatchingListener shutdownListener = outputWatch.addListener(new ResultMatchingListener(": Shutdown complete"));
+        ResultMatchingListener shutdownListener = outputWatch.addListener(new ResultMatchingListener(": Shutdown complete "));
         boolean retValue = false;
         Reader stdErr = null;
 
