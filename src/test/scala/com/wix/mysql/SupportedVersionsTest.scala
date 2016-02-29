@@ -13,22 +13,22 @@ import org.specs2.specification.core.Fragment
  */
 class SupportedVersionsTest extends IntegrationTest {
 
-  trait Context extends Scope {
-    val log = aLogFor("root")
-  }
-
-  Fragment.foreach( Version.values filter(_.supportsCurrentPlatform) ) { version =>
-
-    s"$version should work on ${System.getProperty("os.name")}" in new Context {
-      val config = aMysqldConfig(version).build
-
-      mysqld = anEmbeddedMysql(config)
-        .addSchema("aschema")
-        .start
-
-      mysqld must beAvailableOn(config, "aschema")
-
-      log must not(contain("Something bad happened."))
-    }
-  }
+//  trait Context extends Scope {
+//    val log = aLogFor("root")
+//  }
+//
+//  Fragment.foreach( Version.values filter(_.supportsCurrentPlatform) ) { version =>
+//
+//    s"$version should work on ${System.getProperty("os.name")}" in new Context {
+//      val config = aMysqldConfig(version).build
+//
+//      mysqld = anEmbeddedMysql(config)
+//        .addSchema("aschema")
+//        .start
+//
+//      mysqld must beAvailableOn(config, "aschema")
+//
+//      log must not(contain("Something bad happened."))
+//    }
+//  }
 }
