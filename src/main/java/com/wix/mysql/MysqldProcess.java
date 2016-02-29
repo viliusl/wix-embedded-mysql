@@ -121,7 +121,7 @@ public class MysqldProcess extends AbstractProcess<MysqldConfig, MysqldExecutabl
     private boolean stopUsingMysqldadmin() {
         //TODO: make resultmatcher match 'mysqld.exe: Shutdown complete' in windows and 'mysqld: Shutdown complete' in linux
         //TODO: windows gets the signal, but process is not yet stopped... so skipping this step and allowing next step to take over
-        ResultMatchingListener shutdownListener = outputWatch.addListener(new ResultMatchingListener("mysqld: Shutdown complete", "mysqld.exe: Shutdown complete"));
+        ResultMatchingListener shutdownListener = outputWatch.addListener(new ResultMatchingListener("mysqld: Shutdown complete"));
         //ResultMatchingListener shutdownListener = outputWatch.addListener(new ResultMatchingListener("mysqld: Shutdown complete"));
         boolean retValue = false;
         Reader stdErr = null;
