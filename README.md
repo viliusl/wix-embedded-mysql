@@ -20,7 +20,7 @@ Add dependency to your pom.xml:
         <scope>test</scope>
     </dependency>        
 ```
-  
+
 ## Examples
 
 You can start and embedded mysql with defaults and a single schema
