@@ -143,6 +143,7 @@ public class MysqldProcess extends AbstractProcess<MysqldConfig, MysqldExecutabl
                     logger.error("mysql shutdown failed. Expected to find in output: 'Shutdown complete', got: " + shutdownListener.getFailureFound());
                     retValue = false;
                 } else {
+                    logger.debug("mysql shutdown succeeded.");
                     retValue = true;
                 }
 
